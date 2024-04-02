@@ -9,15 +9,22 @@ class ResumeRepository {
   ResumeRepository({required this.firebaseStorage});
 
   final FirebaseStorage firebaseStorage;
+  Resume? _currentResume;
+  String? _currentPictureURL;
+
+  Resume? get currentResume => _currentResume;
+
+  String? get currentPictureURL => _currentPictureURL;
 
   Future<Resume> get() async {
     final data = await firebaseStorage.ref('/resume.yaml').getData();
     final yaml = _mapFromRaw(data!);
-    return Resume.fromMap(yaml);
+    return _currentResume = Resume.fromMap(yaml);
   }
 
-  Future<String> getProfilePicture() {
-    return firebaseStorage.ref('/headshot.png').getDownloadURL();
+  Future<String> getProfilePicture() async {
+    return _currentPictureURL =
+        await firebaseStorage.ref('/headshot.png').getDownloadURL();
   }
 
   Map<String, dynamic> _mapFromRaw(Uint8List rawData) {

@@ -1,11 +1,11 @@
 {
-    "name": "Nathanielxd",
-    "short_name": "Nathanielxd",
+    "name": "Nathaniel Dragusin",
+    "short_name": "nathanielxd",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A Very Good Project created by Very Good CLI.",
+    "description": "Product-focused Software Engineer hire.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

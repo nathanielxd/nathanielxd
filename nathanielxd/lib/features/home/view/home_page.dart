@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nathanielxd/features/home/home.dart';
-import 'package:nathanielxd/repositories/resume_repository.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({required this.child, required this.routerState, super.key});
+
+  final Widget child;
+  final GoRouterState routerState;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => HomeCubit(
-        resumeRepository: context.read<ResumeRepository>(),
-      ),
-      child: const HomeView(),
+    return HomeView(
+      routerState: routerState,
+      child: child,
     );
   }
 }

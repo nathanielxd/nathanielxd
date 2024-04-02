@@ -1,16 +1,16 @@
-part of 'home_cubit.dart';
+part of 'landing_cubit.dart';
 
-sealed class HomeState extends Equatable {
-  const HomeState();
+sealed class LandingState extends Equatable {
+  const LandingState();
 
   @override
   List<Object> get props => [];
 }
 
-final class HomeLoading extends HomeState {}
+final class LandingLoading extends LandingState {}
 
-final class HomeInitialised extends HomeState {
-  const HomeInitialised({
+final class LandingInitialised extends LandingState {
+  const LandingInitialised({
     required this.resume,
     required this.profilePictureURL,
   });

@@ -28,6 +28,9 @@ flutter:
   uses-material-design: true
   generate: true
 
+  assets:
+    - assets/
+
   fonts:
     - family: Manrope
       fonts:
@@ -35,3 +38,6 @@ flutter:
     - family: OpenSans
       fonts:
         - asset: fonts/OpenSans.ttf
+    - family: RedditMono
+      fonts:
+        - asset: fonts/RedditMono.ttf

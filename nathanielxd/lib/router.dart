@@ -1,41 +1,52 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nathanielxd/features/home/home.dart';
+import 'package:nathanielxd/features/landing/landing.dart';
+import 'package:nathanielxd/features/resume/resume.dart';
 
-enum RoutePath {
-  root;
-
-  const RoutePath([this.name, this.parent, this.parameters]);
-
-  final String? name;
-  final RoutePath? parent;
-  final List<String>? parameters;
-
-  String get rawPath => [
-        if (parent != null) parent!.rawPath,
-        if (name != null) '/$name',
-        if (parameters != null) parameters!.map((e) => '/:$e').join(),
-      ].join();
-
-  String path({
-    List<dynamic>? pathParameters,
-    Map<String, dynamic>? queryParameters,
-  }) =>
-      Uri(
-        path: [
-          if (parent != null) parent!.path(),
-          if (name != null) '/$name',
-          if (pathParameters != null) ...pathParameters.map((e) => '/$e'),
-        ].join(),
-        queryParameters: queryParameters,
-      ).toString();
+CustomTransitionPage<T> buildPageWithDefaultTransition<T>({
+  required BuildContext context,
+  required GoRouterState state,
+  required Widget child,
+}) {
+  return CustomTransitionPage<T>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+        FadeTransition(opacity: animation, child: child),
+  );
 }
 
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final _shellNavigatorKey = GlobalKey<NavigatorState>();
+
 final router = GoRouter(
-  initialLocation: '/',
+  navigatorKey: _rootNavigatorKey,
   routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const HomePage(),
+    ShellRoute(
+      navigatorKey: _shellNavigatorKey,
+      builder: (context, state, child) =>
+          HomePage(routerState: state, child: child),
+      routes: [
+        GoRoute(
+          path: '/',
+          parentNavigatorKey: _shellNavigatorKey,
+          pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: const LandingPage(),
+          ),
+        ),
+        GoRoute(
+          path: '/resume',
+          parentNavigatorKey: _shellNavigatorKey,
+          pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: const ResumePage(),
+          ),
+        ),
+      ],
     ),
   ],
 );
