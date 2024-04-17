@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:nathanielxd/models/models.dart';
-import 'package:nathanielxd/repositories/resume_repository.dart';
+import 'package:nathanielxd/domain/resume/resume.dart';
 
 part 'resume_state.dart';
 
@@ -10,13 +9,15 @@ class ResumeCubit extends Cubit<ResumeState> {
     required this.resumeRepository,
   }) : super(ResumeLoading()) {
     if (resumeRepository.currentResume == null ||
-        resumeRepository.currentPictureURL == null) {
+        resumeRepository.currentPictureURL == null ||
+        resumeRepository.currentIcons.isEmpty) {
       initialize();
     } else {
       emit(
         ResumeInitialised(
           resume: resumeRepository.currentResume!,
           profilePictureURL: resumeRepository.currentPictureURL!,
+          projectIconURLs: resumeRepository.currentIcons,
         ),
       );
     }
@@ -29,9 +30,14 @@ class ResumeCubit extends Cubit<ResumeState> {
 
     final resume = await resumeRepository.get();
     final profilePictureURL = await resumeRepository.getProfilePicture();
+    final projectIconURLs = await resumeRepository.getIcons();
 
     emit(
-      ResumeInitialised(resume: resume, profilePictureURL: profilePictureURL),
+      ResumeInitialised(
+        resume: resume,
+        profilePictureURL: profilePictureURL,
+        projectIconURLs: projectIconURLs,
+      ),
     );
   }
 }

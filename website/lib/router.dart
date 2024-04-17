@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nathanielxd/features/home/home.dart';
 import 'package:nathanielxd/features/landing/landing.dart';
+import 'package:nathanielxd/features/portfolio/portfolio.dart';
 import 'package:nathanielxd/features/resume/resume.dart';
 
 CustomTransitionPage<T> buildPageWithDefaultTransition<T>({
@@ -44,6 +45,15 @@ final router = GoRouter(
             context: context,
             state: state,
             child: const ResumePage(),
+          ),
+        ),
+        GoRoute(
+          path: '/portfolio',
+          parentNavigatorKey: _shellNavigatorKey,
+          pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: const PortfolioPage(),
           ),
         ),
       ],

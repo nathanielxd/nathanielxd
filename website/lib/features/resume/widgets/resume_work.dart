@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nathanielxd/models/models.dart';
+import 'package:nathanielxd/domain/resume/resume.dart';
 import 'package:nathanielxd/plugins/theme_extension.dart';
 
 class ResumeWork extends StatelessWidget {

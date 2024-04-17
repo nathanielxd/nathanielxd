@@ -13,11 +13,13 @@ final class ResumeInitialised extends ResumeState {
   const ResumeInitialised({
     required this.resume,
     required this.profilePictureURL,
+    required this.projectIconURLs,
   });
 
   final Resume resume;
   final String profilePictureURL;
+  final Map<String, String> projectIconURLs;
 
   @override
-  List<Object> get props => [resume, profilePictureURL];
+  List<Object> get props => [resume, profilePictureURL, projectIconURLs];
 }

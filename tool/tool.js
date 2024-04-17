@@ -3,7 +3,7 @@ const path = require('path');
 const admin = require('firebase-admin');
 const { exit, stdout } = require('process');
 
-var serviceAccount = require("./serviceAccountKey.json");
+var serviceAccount = require("./storage-worker.json");
 
 const projectID = 'nathaniel-dev';
 /// Path to the root storage directory.

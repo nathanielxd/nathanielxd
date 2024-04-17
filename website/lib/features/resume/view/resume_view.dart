@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nathanielxd/domain/resume/resume.dart';
 import 'package:nathanielxd/features/resume/resume.dart';
 import 'package:nathanielxd/features/resume/widgets/resume_awards.dart';
-import 'package:nathanielxd/models/models.dart';
 import 'package:nathanielxd/plugins/theme_extension.dart';
 import 'package:nathanielxd/theme/theme.dart';
 
@@ -60,8 +60,10 @@ class _ResumeView extends StatelessWidget {
                       if (state.resume.projects != null)
                         Padding(
                           padding: const EdgeInsets.only(top: 24),
-                          child:
-                              ResumeProjects(projects: state.resume.projects!),
+                          child: ResumeProjects(
+                            projects: state.resume.projects!,
+                            projectIconsURLs: state.projectIconURLs,
+                          ),
                         ),
                     ],
                   ),

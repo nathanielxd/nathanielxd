@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:nathanielxd/models/models.dart';
+import 'package:nathanielxd/domain/resume/resume.dart';
 import 'package:nathanielxd/plugins/theme_extension.dart';
-import 'package:nathanielxd/theme/components/web_link.dart';
 import 'package:nathanielxd/theme/theme.dart';
 
 class ResumeProjects extends StatelessWidget {
-  const ResumeProjects({required this.projects, super.key});
+  const ResumeProjects({
+    required this.projects,
+    required this.projectIconsURLs,
+    super.key,
+  });
 
   final List<Project> projects;
+  final Map<String, String> projectIconsURLs;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,10 @@ class ResumeProjects extends StatelessWidget {
         ...projects.map(
           (e) => Padding(
             padding: const EdgeInsets.only(top: 24),
-            child: _ResumeProject(project: e),
+            child: _ResumeProject(
+              project: e,
+              iconURL: projectIconsURLs[e.image]!,
+            ),
           ),
         ),
       ],
@@ -30,9 +37,13 @@ class ResumeProjects extends StatelessWidget {
 }
 
 class _ResumeProject extends StatelessWidget {
-  const _ResumeProject({required this.project, super.key});
+  const _ResumeProject({
+    required this.project,
+    required this.iconURL,
+  });
 
   final Project project;
+  final String iconURL;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +59,7 @@ class _ResumeProject extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image.network(
-                    project.image!,
+                    iconURL,
                     width: 60,
                   ),
                 ),

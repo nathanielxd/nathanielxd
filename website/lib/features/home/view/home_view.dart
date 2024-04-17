@@ -29,7 +29,7 @@ class HomeView extends StatelessWidget {
                   onTap: () => context.go('/'),
                 ),
               ),
-              ...['resume'].map(
+              ...['resume', 'portfolio'].map(
                 (e) => Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: MenuTile(

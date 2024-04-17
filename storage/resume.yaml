@@ -79,40 +79,40 @@ work:
 projects:
   - name: LAN Chat
     url: https://github.com/nathanielxd/simple-lan-chat
-    image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Flanchat.webp?alt=media&token=c7ebd56d-aca9-4fdd-9eb9-a36f2815321c
+    image: icons/lanchat.webp
     description:
       This serverless local network chat app uses TCP/UDP packets, supporting text, image, file sharing, client discovery, and a clean UI.
       Published on Google Play with over 5000 installs, built using a handcrafted LAN framework for heartbeat recognition, custom names, and messages in local packets.
     highlights: [Flutter, Networks, Chat]
   - name: MagicHome
     url: https://github.com/nathanielxd/magic-home
-    image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Fmagichome.png?alt=media&token=9a44663e-731b-49c4-ba3e-abf72128f2ed
+    image: icons/magichome.png
     description:
       C# and .NET library enabling control of MagicHome-compatible light bulbs and LED strips within the same network.
       It was developed by reverse engineering and packet listening smart lighting at home.
     highlights: [C#, .NET, Dart, Networks]
   - name: Lethologica
     url: https://play.google.com/store/apps/details?id=com.brutempire.lethologica&pli=1
-    image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Flethologica.png?alt=media&token=aa679f30-6467-49ed-8146-99b8dfd34a04
+    image: icons/lethologica.png
     description:
       Look up words in the dictionary and save them into this easy-to-use, minimalistic vocabulary.
       Lethologica is a Flutter app with a clean design that provides English queries, auto suggestions, and offline word vocabulary.
     highlights: [Flutter, APIs]
   - name: Tapline
     url: https://play.google.com/store/apps/details?id=com.nathanielxd.tapline&pli=1
-    image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Ftapline.webp?alt=media&token=f39cf0f6-25b5-4152-ba93-f4a8c1fad400
+    image: icons/tapline.webp
     description:
       App for brewing enthusiasts with a recipe editor, calculators for bitterness, colour, ABV, OG,
       and assistant managing timers and to-dos for a seamless brewing experience.
     highlights: [Flutter, Firebase, Design]
   - name: FlutterFall
     url: https://github.com/nathanielxd/flutterfall
-    image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Fflutterfall.jpg?alt=media&token=634b09f1-7128-45f0-b2b7-8454e5717ab3
+    image: icons/flutterfall.jpg
     description:
       Architectural design pattern for Flutter with modular directory structure, repository pattern, and 3-layered object separation.
       It is bundled with helper tools such as VSCode extensions and snippets for efficient pattern implementation.
     highlights: [TypeScript, Flutter, BLoC, Architecture]
   - name: Lockie
     url: https://github.com/nathanielxd/lockie
-    image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Flockie.jpg?alt=media&token=8e35c7d2-5973-439a-8108-7f8bb18f8560
+    image: icons/lockie.jpg
     description: Mobile application that protects your passwords using a mix of cloud infrastructure and local disk, fool-proof storage.
