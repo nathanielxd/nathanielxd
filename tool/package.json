@@ -1,0 +1,7 @@
+{
+    "dependencies": {
+        "firebase-admin": "^11.5.0",
+        "js-yaml": "^4.1.0",
+        "path": "^0.12.7"
+    }
+}

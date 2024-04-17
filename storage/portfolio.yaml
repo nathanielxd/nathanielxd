@@ -1,0 +1,44 @@
+- name: LAN Chat
+  image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Flanchat.webp?alt=media&token=c7ebd56d-aca9-4fdd-9eb9-a36f2815321c
+  urls:
+    - label: GitHub
+      url: https://github.com/nathanielxd/simple-lan-chat
+  screenshots: []
+  tags: [Flutter]
+  description: |
+    Lan Chat is a server-less local network chat app using TCP/UDP packets, supporting text, 
+    image, file sharing, client discovery, and a clean UI. Finding it on Google Play, 
+    it sits at over 5000 installs and was built using a handcrafted LAN framework for heartbeat recognition, 
+    custom names, and text messages in local packets.
+
+
+    This app is one of the first personal projects I have worked on, and it was initially meant to 
+    allow me to quickly share data on the network, from my phone to my PC, for example. It was also a fun way to implement 
+    new knowledge about local networks into an app.
+
+
+    The project is open source and can be directly downloaded to your Android device through Google Play. 
+    Documentation on how it was built and figured out to include functionality such as file sharing 
+    and network detection can be found on GitHub.
+- name: Lethologica
+  image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Flethologica.png?alt=media&token=aa679f30-6467-49ed-8146-99b8dfd34a04
+  screenshots: []
+  tags: [Flutter]
+  description:
+    Lethologica is an easy-to-use, beautiful dictionary app that allows users to query and save words into a vocabulary list stored on their devices.
+
+    Featuring smart auto-suggestion, offline storage and Material 3-based theming,
+    this project's conception came from the idea of how complicated most vocabulary apps are,
+    and I wanted something that I could quickly open up while reading a book or studying.
+
+    The app uses a free dictionary API and imposes a clean, structured architecture that allows it to be expanded anytime.
+- name: Tapline
+  image: https://firebasestorage.googleapis.com/v0/b/nathaniel-dev.appspot.com/o/icons%2Ftapline.webp?alt=media&token=f39cf0f6-25b5-4152-ba93-f4a8c1fad400
+  screenshots: []
+  tags: [Flutter, Google Cloud]
+  description: |
+    Tapline is a fully-fledged brewing experience featuring recipe editors, calculators and a brewing assistant 
+    to help you make the most fresh and delicious beer.
+
+    This project taught me how to develop an entire app from start to finish. 
+    Everything from concept and design to development and publishing has been hand-crafted, allowing me to explore some of my hobbies.
