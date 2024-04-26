@@ -31,46 +31,35 @@ class _ResumeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600),
-              child: SelectionArea(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 64, 16, 64),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _ResumeBasics(
-                        basics: state.resume.basics,
-                        profilePictureURL: state.profilePictureURL,
-                      ),
-                      if (state.resume.work != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 24),
-                          child: ResumeWork(workplaces: state.resume.work!),
-                        ),
-                      if (state.resume.awards != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 24),
-                          child: ResumeAwards(awards: state.resume.awards!),
-                        ),
-                      if (state.resume.projects != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 24),
-                          child: ResumeProjects(
-                            projects: state.resume.projects!,
-                            projectIconsURLs: state.projectIconURLs,
-                          ),
-                        ),
-                    ],
-                  ),
+    return Skeleton(
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 64, 16, 64),
+        child: Column(
+          children: [
+            _ResumeBasics(
+              basics: state.resume.basics,
+              profilePictureURL: state.profilePictureURL,
+            ),
+            if (state.resume.work != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 24),
+                child:
+                    SizedBox(child: ResumeWork(workplaces: state.resume.work!)),
+              ),
+            if (state.resume.awards != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 24),
+                child: ResumeAwards(awards: state.resume.awards!),
+              ),
+            if (state.resume.projects != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 24),
+                child: ResumeProjects(
+                  projects: state.resume.projects!,
+                  projectIconsURLs: state.projectIconURLs,
                 ),
               ),
-            ),
-          ),
+          ],
         ),
       ),
     );

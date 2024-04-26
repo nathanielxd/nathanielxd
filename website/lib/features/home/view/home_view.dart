@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nathanielxd/features/home/home.dart';
 import 'package:nathanielxd/plugins/theme_extension.dart';
+import 'dart:js' as js;
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -29,15 +30,27 @@ class HomeView extends StatelessWidget {
                   onTap: () => context.go('/'),
                 ),
               ),
-              ...['resume', 'portfolio'].map(
+              ...['resume'].map(
                 (e) => Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: MenuTile(
-                    page: e,
+                    onTap: () => context.go('/$e'),
+                    label: e,
                     color: routerState.matchedLocation == '/$e'
                         ? context.colorScheme.onBackground
                         : context.textTheme.bodyLarge!.color!,
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: MenuTile(
+                  onTap: () => js.context.callMethod(
+                    'open',
+                    ['https://github.com/nathanielxd'],
+                  ),
+                  label: 'portfolio',
+                  color: context.textTheme.bodyLarge!.color!,
                 ),
               ),
             ],

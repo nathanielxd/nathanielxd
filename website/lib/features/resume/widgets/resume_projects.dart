@@ -47,59 +47,83 @@ class _ResumeProject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (project.image != null)
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Row(
+    return AspectBuilder(
+      builder: (context, aspect) {
+        return switch (aspect) {
+          Aspect.narrow => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const PaddingHorizontal(60),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
-                    iconURL,
-                    width: 60,
-                  ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 16),
+                  child: _buildIcon(),
                 ),
-                const PaddingHorizontal(60),
+                _buildSummary(context),
               ],
             ),
-          )
-        else
-          const PaddingHorizontal(180),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              WebLink(
-                url: project.url!,
-                child: Text(
-                  project.name!,
-                  style: context.textTheme.titleSmall,
-                ),
-              ),
-              if (project.description != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    project.description!,
-                  ),
-                ),
-              if (project.highlights != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    project.highlights!.join(' • '),
-                    style: TextStyle(
-                      color: context.colorScheme.onBackground.withOpacity(0.5),
+          Aspect.wide => Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (project.image != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Row(
+                      children: [
+                        const PaddingHorizontal(60),
+                        _buildIcon(),
+                        const PaddingHorizontal(60),
+                      ],
                     ),
-                  ),
+                  )
+                else
+                  const PaddingHorizontal(180),
+                Expanded(
+                  child: _buildSummary(context),
                 ),
-            ],
+              ],
+            )
+        };
+      },
+    );
+  }
+
+  Widget _buildIcon() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Image.network(
+        iconURL,
+        width: 60,
+      ),
+    );
+  }
+
+  Widget _buildSummary(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        WebLink(
+          url: project.url!,
+          child: Text(
+            project.name!,
+            style: context.textTheme.titleSmall,
           ),
         ),
+        if (project.description != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              project.description!,
+            ),
+          ),
+        if (project.highlights != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              project.highlights!.join(' • '),
+              style: TextStyle(
+                color: context.colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
+          ),
       ],
     );
   }

@@ -128,8 +128,10 @@ class _LandingViewState extends State<_LandingView>
                             child: Image.asset('assets/github.png', width: 36),
                           ),
                           label: 'Portfolio',
-                          onTap: () => js.context
-                              .callMethod('open', ['github.com/nathanielxd']),
+                          onTap: () => js.context.callMethod(
+                            'open',
+                            ['https://github.com/nathanielxd'],
+                          ),
                         ),
                       ],
                     ),
@@ -155,7 +157,8 @@ class _LandingViewState extends State<_LandingView>
                       widget.state.resume.basics.label,
                       maxLines: 2,
                       textAlign: TextAlign.center,
-                      style: context.textTheme.bodyLarge,
+                      style: context.textTheme.bodyLarge!
+                          .copyWith(fontSize: 24, fontFamily: 'Manrope'),
                     ),
                   ),
                 ),

@@ -4,6 +4,7 @@
     - label: GitHub
       url: https://github.com/nathanielxd/simple-lan-chat
   screenshots:
+    - projects/LAN Chat/Screenshots/record_quick.gif
     - projects/LAN Chat/Screenshots/chat.jpg
     - projects/LAN Chat/Screenshots/settings.jpg
   tags: [Flutter]

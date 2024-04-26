@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class MenuTile extends StatelessWidget {
   const MenuTile({
-    required this.page,
+    required this.onTap,
+    required this.label,
     required this.color,
     super.key,
   });
 
-  final String page;
+  final void Function() onTap;
+  final String label;
   final Color color;
 
   @override
@@ -16,11 +17,11 @@ class MenuTile extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () => context.go('/$page'),
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(4),
           child: Text(
-            page,
+            label,
             style: TextStyle(color: color, fontFamily: 'RedditMono'),
           ),
         ),

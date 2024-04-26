@@ -1,12 +1,13 @@
 basics:
   name: Nathaniel Dragusin
-  label: Application Engineer
+  label: Software Engineer | App Design | Product Architecture
   email: dragusinnathaniel@gmail.com
   phone: "07838005546"
   url: https://nathandevelops.com
   summary:
-    As an enthusiastic developer, I enjoy creating scalable products that improve based on metrics.
-    I am a keen learner and do well in large teams, but I also appreciate the autonomy of working independently.
+    As an enthusiastic developer, I enjoy creating scalable products that improve based on metrics and constant feedback.
+    With valuable experience in head-first tackling problems in startups I have worked with in the past,
+    I compose myself as a keen, curious learner.
   location:
     city: Bristol
     countryCode: UK
@@ -25,35 +26,54 @@ awards:
   - title: 1st Place National Contest
     date: 2019-11-01
     awarder: Microsoft Youthspark
-    summary: Automated building of a real-life historical monument in Minecraft for Education using JavaScript, accompanied by video documentation.
+    summary:
+      Automated building of a real-life historical monument in Minecraft for Education using JavaScript,
+      accompanied by video documentation.
+education:
+  - institution: University of Birmingham
+    url: https://www.birmingham.ac.uk/
+    studyType: Diploma of Higher Education
+    startDate: 2022-09-01
+    endDate: 2022-07-01
+certificates:
+  - name: "Microsoft Technology Associate: Software Development Fundamentals (MTA)"
+    date: 2018-07-01
+    issuer: Microsoft
+    credential: "90074936"
+  - name: IC3 Digital Literacy Certification
+    date: 2018-09-01
+    issuer: Certiport - A Pearson VUE Business
+    credential: "90056560"
 work:
   - name: FuturU, UK
     position: Software Engineer
+    url: https://futuru.ai
     startDate: 2023-09-01
     endDate: 2024-02-01
     summary:
-      Revamped the front-end of Amazon Amplify and AI-powered health-ed app,
-      reducing the codebase by 61% and enhancing user experience with new widgets, components, and animations.
+      Revamped the entire front-end of an AWS-powered health education app,
+      reducing the codebase by 61% and enhancing user experience with new widgets, components, and animations,
+      including a sustainable architecture supported by documentation.
     highlights: [Flutter, Amplify, Architecture]
   - name: Good With
-    position: Full Stack Developer
+    position: Lead Software Developer
     url: https://goodwith.co
     startDate: 2021-09-01
     endDate: 2023-09-01
     summary: |-
-      Pioneered the establishment of the tech stack, overseeing DevOps, CI/CD, and managing Google Cloud infrastructure using Node.JS and Terraform.
+      Led team in developing a modular fintech app in Flutter using open-banking technology and clean architecture, securing over £600k in grant funding.
 
-      Led team in developing a scalable fintech app in Flutter using open-banking technology, securing over £600k in grant funding.
+      Pioneered the establishment of our tech stack, supporting a web app, mobile app, admin panel and cloud applications, overseeing CI/CD and managing Google Cloud infrastructure using Node.JS and Terraform.
 
-      Innovated frameworks for seamless content integration and educational platforms, managing a full-stack chatbot used in machine learning.
+      Innovated frameworks for seamless content integration and educational platforms, including managing a full-stack chatbot used in machine learning.
 
-      Ensured regulatory compliance and on-time delivery of product features through strategic project planning.
+      Ensured regulatory compliance and on-time delivery of product features through strategic project planning and product management in a self-organising team.
     highlights:
       [
         Flutter,
         TypeScript,
         Google Cloud,
-        DevOps,
+        CI/CD,
         Terraform,
         System Infrastructure,
         NLPs,
@@ -63,8 +83,8 @@ work:
     url: https://getonyx.co/
     startDate: 2021-03-01
     endDate: 2021-09-01
-    summary: Revamped market entry with user-tested Flutter fintech app,
-      utilizing BLoC and RESTful APIs and sticking to strict quality standards through test-driven development.
+    summary: Developed market entry with a user-tested Flutter fintech app,
+      utilising BLoC and RESTful APIs and sticking to strict quality standards through test-driven development.
     highlights: [Flutter, APIs, TDD, BLoC]
   - name: VIPAS
     position: Flutter Developer
@@ -72,47 +92,50 @@ work:
     startDate: 2019-08-01
     endDate: 2020-09-01
     summary:
-      Prototyped Flutter app for electric vehicle users, implementing authentication, geofencing,
-      maps, and profile creation. Cut operating costs by researching and benchmarking
-      open-source transportation routing software.
+      Prototyped Flutter app for electric vehicle users, implementing authentication, geolocation, maps, and profile creation.
+      Cut operating costs by researching and benchmarking open-source transportation routing software.
     highlights: [Sensors, Flutter, Benchmarks]
 projects:
   - name: LAN Chat
     url: https://github.com/nathanielxd/simple-lan-chat
     image: icons/lanchat.webp
-    description:
-      This serverless local network chat app uses TCP/UDP packets, supporting text, image, file sharing, client discovery, and a clean UI.
+    description: |-
+      This lightweight local network chat app uses TCP/UDP packets, supporting text, image, file sharing, client discovery, and a clean UI. 
+
       Published on Google Play with over 5000 installs, built using a handcrafted LAN framework for heartbeat recognition, custom names, and messages in local packets.
     highlights: [Flutter, Networks, Chat]
   - name: MagicHome
     url: https://github.com/nathanielxd/magic-home
     image: icons/magichome.png
-    description:
+    description: |-
       C# and .NET library enabling control of MagicHome-compatible light bulbs and LED strips within the same network.
+
       It was developed by reverse engineering and packet listening smart lighting at home.
     highlights: [C#, .NET, Dart, Networks]
   - name: Lethologica
     url: https://play.google.com/store/apps/details?id=com.brutempire.lethologica&pli=1
     image: icons/lethologica.png
-    description:
-      Look up words in the dictionary and save them into this easy-to-use, minimalistic vocabulary.
+    description: |-
+      Look up words in the dictionary and save them into this easy-to-use, minimalistic vocabulary. 
+
       Lethologica is a Flutter app with a clean design that provides English queries, auto suggestions, and offline word vocabulary.
     highlights: [Flutter, APIs]
-  - name: Tapline
-    url: https://play.google.com/store/apps/details?id=com.nathanielxd.tapline&pli=1
-    image: icons/tapline.webp
-    description:
-      App for brewing enthusiasts with a recipe editor, calculators for bitterness, colour, ABV, OG,
-      and assistant managing timers and to-dos for a seamless brewing experience.
-    highlights: [Flutter, Firebase, Design]
+  # - name: Tapline
+  #   url: https://play.google.com/store/apps/details?id=com.nathanielxd.tapline&pli=1
+  #   image: icons/tapline.webp
+  #   description:
+  #     App for brewing enthusiasts with a recipe editor, calculators for bitterness, colour, ABV, OG,
+  #     and assistant managing timers and to-dos for a seamless brewing experience.
+  #   highlights: [Flutter, Firebase, Design]
   - name: FlutterFall
     url: https://github.com/nathanielxd/flutterfall
     image: icons/flutterfall.jpg
-    description:
+    description: |
       Architectural design pattern for Flutter with modular directory structure, repository pattern, and 3-layered object separation.
+
       It is bundled with helper tools such as VSCode extensions and snippets for efficient pattern implementation.
     highlights: [TypeScript, Flutter, BLoC, Architecture]
-  - name: Lockie
-    url: https://github.com/nathanielxd/lockie
-    image: icons/lockie.jpg
-    description: Mobile application that protects your passwords using a mix of cloud infrastructure and local disk, fool-proof storage.
+  # - name: Lockie
+  #   url: https://github.com/nathanielxd/lockie
+  #   image: icons/lockie.jpg
+  #   description: Mobile application that protects your passwords using a mix of cloud infrastructure and local disk, fool-proof storage.
