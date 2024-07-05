@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MainTheme {
   static final theme = ThemeData.from(
-    colorScheme: const ColorScheme.dark(),
+    colorScheme: const ColorScheme.dark(primary: Colors.red),
     textTheme: MainTextTheme.main,
     useMaterial3: true,
   );
@@ -28,7 +28,7 @@ class MainTextTheme {
   );
 
   static const _display =
-      TextStyle(fontFamily: 'Manrope', fontWeight: FontWeight.w700);
+      TextStyle(fontFamily: 'Manrope', fontWeight: FontWeight.w900);
 
   static const _headline =
       TextStyle(fontFamily: 'Manrope', fontWeight: FontWeight.w700);

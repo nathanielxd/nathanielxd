@@ -1,172 +1,285 @@
-// ignore_for_file: avoid_web_libraries_in_flutter
+import 'package:flutter/material.dart';
+import 'package:nathanielxd/domain/resume/resume.dart';
+import 'package:nathanielxd/features/landing/landing.dart';
+import 'package:nathanielxd/gen/assets.gen.dart';
+import 'package:nathanielxd/gen/fonts.gen.dart';
+import 'package:nathanielxd/plugins/theme_extension.dart';
+import 'package:nathanielxd/theme/theme.dart';
 
-import 'dart:async';
 import 'dart:js' as js;
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:nathanielxd/features/landing/landing.dart';
-import 'package:nathanielxd/plugins/theme_extension.dart';
-import 'package:nathanielxd/theme/scaffolding/padding_horizontal.dart';
-import 'package:nathanielxd/theme/scaffolding/padding_vertical.dart';
-
 class LandingView extends StatelessWidget {
-  const LandingView({super.key});
+  LandingView({required this.resume, super.key});
+
+  final Resume resume;
+  final notifier = CarouselNotifier(length: 2);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LandingCubit, LandingState>(
-      builder: (context, state) {
-        return switch (state) {
-          LandingLoading() => const Center(child: CircularProgressIndicator()),
-          LandingInitialised() => _LandingView(state: state)
-        };
-      },
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: ColorFiltered(
+            colorFilter:
+                const ColorFilter.mode(Colors.black87, BlendMode.color),
+            child: Assets.backgrounds.malaga.image(fit: BoxFit.cover),
+          ),
+        ),
+        Skeleton(
+          maxWidth: 800,
+          backgroundColor: Colors.transparent,
+          body: Column(
+            children: [
+              const PaddingVertical(100),
+              Row(
+                children: [
+                  Expanded(
+                    child: _Profile(resume: resume),
+                  ),
+                  SizedBox(
+                    height: 500,
+                    width: 500,
+                    child: _Carousel(notifier: notifier),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
 
-class _LandingView extends StatefulWidget {
-  const _LandingView({required this.state, super.key});
+class _Profile extends StatelessWidget {
+  const _Profile({
+    required this.resume,
+    super.key,
+  });
 
-  final LandingInitialised state;
-
-  @override
-  State<_LandingView> createState() => _LandingViewState();
-}
-
-class _LandingViewState extends State<_LandingView>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> animation;
-  late Animation<Offset> slideAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 400),
-    );
-
-    animation = CurvedAnimation(parent: controller, curve: Curves.ease);
-
-    slideAnimation = TweenSequence<Offset>([
-      TweenSequenceItem(
-        tween: Tween(begin: const Offset(0, -1), end: const Offset(0, -1)),
-        weight: 1,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: const Offset(0, -1), end: Offset.zero),
-        weight: 1,
-      ),
-    ]).animate(animation);
-
-    delayedPlay();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  Future<void> delayedPlay() async {
-    await Future<void>.delayed(const Duration(seconds: 1));
-    if (mounted) {
-      await controller.forward();
-    }
-  }
+  final Resume resume;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          heightFactor: 0.8,
-          child: SelectionArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    const Spacer(),
-                    CircleAvatar(
-                      radius: 123,
-                      backgroundColor: Colors.white.withOpacity(0.9),
-                      child: InkWell(
-                        child: CircleAvatar(
-                          radius: 120,
-                          backgroundImage:
-                              NetworkImage(widget.state.profilePictureURL),
+    return Container(
+      height: 500,
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(255, 236, 106, 246),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 16, right: 16),
+            child: Text(
+              resume.basics.name.toUpperCase(),
+              style: context.textTheme.displayLarge!.copyWith(
+                fontFamily: FontFamily.bebasNeue,
+                fontStyle: FontStyle.italic,
+                color: context.colorScheme.surface,
+              ),
+              textAlign: TextAlign.end,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16, right: 8),
+            child: Text(
+              resume.basics.label.toUpperCase(),
+              style: context.textTheme.titleLarge!.copyWith(
+                fontFamily: FontFamily.redditMono,
+                fontWeight: FontWeight.w900,
+                backgroundColor: context.colorScheme.surface,
+              ),
+              textAlign: TextAlign.end,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16, right: 8),
+            child: DefaultTextStyle(
+              style: TextStyle(
+                color: context.colorScheme.surface,
+                fontFamily: FontFamily.redditMono,
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'FLUTTER DEVELOPER',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text('4 YRS'),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16, right: 8),
+            child: DefaultTextStyle(
+              style: TextStyle(
+                color: context.colorScheme.surface,
+                fontFamily: FontFamily.redditMono,
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'LEAD ENGINEER',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text('1 YR'),
+                ],
+              ),
+            ),
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16, right: 8),
+            child: ProfileButton(
+              label: 'EMAIL',
+              icon: Icons.email_outlined,
+              onTap: () => js.context
+                  .callMethod('open', ['mailto:dragusinnathaniel@gmail.com']),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16, right: 8),
+            child: ProfileButton(
+              label: 'GITHUB',
+              icon: Icons.image_aspect_ratio_rounded,
+              onTap: () => js.context
+                  .callMethod('open', ['https://github.com/nathanielxd']),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Carousel extends StatelessWidget {
+  const _Carousel({
+    required this.notifier,
+    super.key,
+  });
+
+  final CarouselNotifier notifier;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ListenableBuilder(
+          listenable: notifier,
+          builder: (context, _) {
+            return Material(
+              shape: Border.all(width: 8, color: context.colorScheme.surface),
+              child: Center(
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 500),
+                  child: ['lanchat.jpeg', 'lethologica.jpg']
+                      .map(
+                        (e) => Image.asset(
+                          key: Key(e),
+                          'assets/carousel/$e',
+                        ),
+                      )
+                      .toList()[notifier.index],
+                ),
+              ),
+            );
+          },
+        ),
+        Positioned(
+          top: 16,
+          left: 16,
+          right: 16,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: notifier.previous,
+                child: Material(
+                  color: context.colorScheme.surface,
+                  child: const Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ),
+              ListenableBuilder(
+                listenable: notifier,
+                builder: (context, _) => InkWell(
+                  onTap: () => js.context.callMethod('open', [
+                    [
+                      'https://play.google.com/store/apps/details?id=com.nathanielxd.SimpleLANChat&pli=1',
+                      'https://play.google.com/store/apps/details?id=com.brutempire.lethologica',
+                    ][notifier.index],
+                  ]),
+                  child: SizedBox(
+                    height: 44,
+                    child: Material(
+                      color: context.colorScheme.surface,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Text(
+                            ['LAN Chat', 'Lethologica'][notifier.index]
+                                .toUpperCase(),
+                            style: context.textTheme.titleMedium!.copyWith(
+                              fontFamily: FontFamily.redditMono,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    const PaddingHorizontal(24),
-                    Column(
-                      children: [
-                        ProfileIcon(
-                          icon: const Icon(Icons.email, size: 44),
-                          label: 'Contact',
-                          onTap: () => js.context.callMethod(
-                            'open',
-                            ['mailto:${widget.state.resume.basics.email}'],
-                          ),
-                        ),
-                        const PaddingVertical(12),
-                        ProfileIcon(
-                          icon: const Icon(Icons.article, size: 44),
-                          label: 'Resume',
-                          onTap: () => context.go('/resume'),
-                        ),
-                        const PaddingVertical(12),
-                        ProfileIcon(
-                          icon: Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: Image.asset('assets/github.png', width: 36),
-                          ),
-                          label: 'Portfolio',
-                          onTap: () => js.context.callMethod(
-                            'open',
-                            ['https://github.com/nathanielxd'],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                  ],
+                  ),
                 ),
-                FadeTransition(
-                  opacity: controller,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 24),
-                    child: Text(
-                      widget.state.resume.basics.name,
-                      textAlign: TextAlign.center,
-                      style: context.textTheme.displayLarge,
+              ),
+              InkWell(
+                onTap: notifier.next,
+                child: Material(
+                  color: context.colorScheme.surface,
+                  child: const Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 20,
                     ),
                   ),
                 ),
-                SlideTransition(
-                  position: slideAnimation,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 12),
-                    child: Text(
-                      widget.state.resume.basics.label,
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      style: context.textTheme.bodyLarge!
-                          .copyWith(fontSize: 24, fontFamily: 'Manrope'),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-      ),
+      ],
     );
+  }
+}
+
+class CarouselNotifier extends ChangeNotifier {
+  CarouselNotifier({required this.length});
+
+  final int length;
+  int index = 0;
+
+  void next() {
+    if (index == length - 1) {
+      index = 0;
+    } else {
+      index++;
+    }
+    notifyListeners();
+  }
+
+  void previous() {
+    if (index == 0) {
+      index = length - 1;
+    } else {
+      index--;
+    }
+    notifyListeners();
   }
 }

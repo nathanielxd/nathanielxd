@@ -6,12 +6,10 @@ import 'package:nathanielxd/theme/theme.dart';
 class ResumeProjects extends StatelessWidget {
   const ResumeProjects({
     required this.projects,
-    required this.projectIconsURLs,
     super.key,
   });
 
   final List<Project> projects;
-  final Map<String, String> projectIconsURLs;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,6 @@ class ResumeProjects extends StatelessWidget {
             padding: const EdgeInsets.only(top: 24),
             child: _ResumeProject(
               project: e,
-              iconURL: projectIconsURLs[e.image]!,
             ),
           ),
         ),
@@ -39,11 +36,9 @@ class ResumeProjects extends StatelessWidget {
 class _ResumeProject extends StatelessWidget {
   const _ResumeProject({
     required this.project,
-    required this.iconURL,
   });
 
   final Project project;
-  final String iconURL;
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +84,8 @@ class _ResumeProject extends StatelessWidget {
   Widget _buildIcon() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
-      child: Image.network(
-        iconURL,
+      child: Image.asset(
+        project.image!,
         width: 60,
       ),
     );
@@ -120,7 +115,7 @@ class _ResumeProject extends StatelessWidget {
             child: Text(
               project.highlights!.join(' • '),
               style: TextStyle(
-                color: context.colorScheme.onBackground.withOpacity(0.5),
+                color: context.colorScheme.onSurface.withOpacity(0.5),
               ),
             ),
           ),

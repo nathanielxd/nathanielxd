@@ -1,33 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nathanielxd/domain/resume/resume.dart';
 import 'package:nathanielxd/features/resume/resume.dart';
 import 'package:nathanielxd/features/resume/widgets/resume_awards.dart';
+import 'package:nathanielxd/gen/assets.gen.dart';
 import 'package:nathanielxd/plugins/theme_extension.dart';
 import 'package:nathanielxd/theme/theme.dart';
 
 class ResumeView extends StatelessWidget {
-  const ResumeView({super.key});
+  const ResumeView({required this.resume, super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ResumeCubit, ResumeState>(
-      builder: (context, state) {
-        return switch (state) {
-          ResumeLoading() => const Center(child: CircularProgressIndicator()),
-          ResumeInitialised() => _ResumeView(state: state)
-        };
-      },
-    );
-  }
-}
-
-class _ResumeView extends StatelessWidget {
-  const _ResumeView({
-    required this.state,
-  });
-
-  final ResumeInitialised state;
+  final Resume resume;
 
   @override
   Widget build(BuildContext context) {
@@ -37,26 +19,23 @@ class _ResumeView extends StatelessWidget {
         child: Column(
           children: [
             _ResumeBasics(
-              basics: state.resume.basics,
-              profilePictureURL: state.profilePictureURL,
+              basics: resume.basics,
             ),
-            if (state.resume.work != null)
+            if (resume.work != null)
               Padding(
                 padding: const EdgeInsets.only(top: 24),
-                child:
-                    SizedBox(child: ResumeWork(workplaces: state.resume.work!)),
+                child: SizedBox(child: ResumeWork(workplaces: resume.work!)),
               ),
-            if (state.resume.awards != null)
+            if (resume.awards != null)
               Padding(
                 padding: const EdgeInsets.only(top: 24),
-                child: ResumeAwards(awards: state.resume.awards!),
+                child: ResumeAwards(awards: resume.awards!),
               ),
-            if (state.resume.projects != null)
+            if (resume.projects != null)
               Padding(
                 padding: const EdgeInsets.only(top: 24),
                 child: ResumeProjects(
-                  projects: state.resume.projects!,
-                  projectIconsURLs: state.projectIconURLs,
+                  projects: resume.projects!,
                 ),
               ),
           ],
@@ -69,11 +48,9 @@ class _ResumeView extends StatelessWidget {
 class _ResumeBasics extends StatelessWidget {
   const _ResumeBasics({
     required this.basics,
-    required this.profilePictureURL,
   });
 
   final Basics basics;
-  final String profilePictureURL;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +60,7 @@ class _ResumeBasics extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(profilePictureURL),
+              backgroundImage: Assets.headshot.provider(),
               radius: 48,
             ),
             const PaddingHorizontal(24),
