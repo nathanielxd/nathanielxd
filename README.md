@@ -2,7 +2,6 @@
 <br>
 <br>
 <br>
-<div style="display: flex; justify-content: center;">
 <a href="http://nathanield.com">
   <img src="media/visit-website.png" width="150"/>
 </a>
@@ -12,7 +11,6 @@
 <a href="https://nathanield.com/apps">
   <img src="media/view-all-apps.png" width="150"/>
 </a>
-</div>
 <br>
 <br>
 <br>
